@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# All generated file after build or running coverage ...
+build/*
+
+# Test result files (created by cpplint, cppcheck, valgrind ...)
+check/*
