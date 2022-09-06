@@ -3,7 +3,6 @@
  * @author Nhat Minh (nhatminh.cdt@gmail.com)
  * @brief Contain functions of how pointers could be used
  * @ref https://iamsorush.com/posts/weak-pointer-cpp/
- * @todo Fix memory errors checked by Valgrind
  * @version 0.1
  * @date 2022-09-05
  * 
@@ -58,8 +57,9 @@ struct Person{
   ~Person() {cout << "Person destructed." << endl;}
 
  public:
-  //  Circular dependency of shared pointers makes destructors are not called and we have a memory leak
-  shared_ptr<Team> team;
+  //  The main reason weak pointers are invented is to break circular dependency of shared pointers
+  //  Otherwise, they cannot delete their objects
+  weak_ptr<Team> team;
 
   const string getName() {
     return name;

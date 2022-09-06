@@ -36,3 +36,6 @@ build/*
 
 # Test result files (created by cpplint, cppcheck, valgrind ...)
 check/*
+
+# html contents (coverage, doxygen, ...)
+*/html/*

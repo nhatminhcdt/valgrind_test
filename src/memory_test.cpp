@@ -3,7 +3,6 @@
  * @author Nhat Minh (nhatminh.cdt@gmail.com)
  * @brief Contain functions of how memory could be used
  * @ref https://www.youtube.com/watch?v=bb1bTJtgXrI
- * @todo Fix memory errors checked by Valgrind
  * @version 0.1
  * @date 2022-09-05
  * 
@@ -22,7 +21,6 @@
 
 /**
  * @brief Invalid free() / delete / delete[] / realloc() (test)
- * @warning  This error would not detected by cppcheck
  * 
  */
 void invalid_mem_delete_test() {
@@ -32,12 +30,11 @@ void invalid_mem_delete_test() {
   for (int i = 0; i < NUM_HEIGHTS; i++) {
     heights[i] = i * i;
     printf("%d: %d\n", i, heights[i]);
-    delete [] heights;
   }
+  delete [] heights;
 }
 /**
  * @brief Invalid write of size (test)
- * @warning  This error would not detected by cppcheck
  * 
  */
 void invalid_write_test() {
@@ -47,8 +44,8 @@ void invalid_write_test() {
   for (int i = 0; i < NUM_WEIGHTS; i++) {
     weights[i] = 100 + i;
   }
-  delete [] weights;
   weights[0] = 0;
+  delete [] weights;
 }
 /**
  * @brief leaked memory (test)
@@ -58,7 +55,7 @@ void leaked_memory_test() {
   printf("-- leaked_memory_test --\n");
   const int NUM_HEIGHTS = 10;
   int *heights = new int[(NUM_HEIGHTS * sizeof(*heights))];
-  if ((heights = NULL)) {
+  if ((heights == NULL)) {
     heights = new int[NUM_HEIGHTS];
   }
   delete [] heights;
@@ -69,7 +66,7 @@ void leaked_memory_test() {
  * @return char* pointer of message
  */
 char *getString() {
-  char message[100] = "Hello world!";
+  static char message[100] = "Hello world!";
   char *ret = message;
   return ret;
 }

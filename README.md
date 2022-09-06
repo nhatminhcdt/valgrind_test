@@ -45,3 +45,4 @@ Open and run Doxyfile on Doxygen GUI will give better overview.
 ---
 **Log**
 - 2022/09/06 - First commit. The current codes will cause variety of memory leakage errors when using Valgrind for check
+- 2022/09/06 - Fix memory errors
